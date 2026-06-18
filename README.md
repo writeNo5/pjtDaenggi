@@ -1,16 +1,18 @@
-# React + Vite
+# 붉은 댕기 소녀 (紅緞)
+1930년대 일제강점기 경성을 배경으로 하는 인터랙티브 그래픽 노블 웹 애플리케이션 프로토타입입니다.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 주요 기능
+- **인터랙티브 스토리**: 5가지 멀티 엔딩 수집
+- **비주얼 연출**: 장면별 삽화 연출 및 Ken Burns 모션 효과
+- **웹 오디오 신디사이저**: 바람, 초침, 한약 끓는 소리 등 고음질 사운드 실시간 합성 (100% 무자원 오프라인 구동)
+- **엔딩 아카이브**: 해금된 결말 수집록 기능
 
-Currently, two official plugins are available:
+## 기술 스택
+- React, Vite, Vanilla CSS, Web Audio API
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 로컬 개발 서버 실행
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
