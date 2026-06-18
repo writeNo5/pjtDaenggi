@@ -138,7 +138,7 @@ const App = () => {
       <div className="phone-frame">
         {/* 모바일 상태 표시줄 */}
         <div className="status-bar">
-          <span className="brand-title">초호기 (UNIT 01)</span>
+          <span className="brand-title">BLACKOUT</span>
           <span className="status-time">{timeDisplay}</span>
         </div>
 
@@ -149,7 +149,7 @@ const App = () => {
             <span>처음으로</span>
           </button>
           
-          <h1 className="header-title">초호기 기동 작전</h1>
+          <h1 className="header-title">블랙 아웃: 심해 6,000미터</h1>
           
           <div className="header-actions">
             <button className="audio-toggle" onClick={toggleSound} title={soundEnabled ? '음소거' : '소리 켜기'}>
@@ -166,19 +166,20 @@ const App = () => {
         <main className="content-area" id="scroll-container">
           {isLanding ? (
             <div className="landing-layout animate-fade-up">
-              <span className="landing-brand">UNIT 01</span>
-              <h2 className="landing-title">초호기 기동 작전</h2>
+              <span className="landing-brand">DEEP OCEAN</span>
+              <h2 className="landing-title">블랙 아웃</h2>
               <p className="landing-subtitle">
-                시방서 검증을 위한 개발팀의 연대기
+                심해 6,000미터 아래의 타임리밋 생존 극
               </p>
               
               <div className="visual-panel-container">
-                <VisualPanel image="https://placehold.co/800x450/2b2724/f5f2eb?text=Operation+Cho-ho-gi" title="초호기 기동 작전" />
+                <VisualPanel image="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?q=80&w=800&auto=format&fit=crop" title="블랙 아웃: 심해 6,000미터" />
               </div>
               
               <p className="landing-description">
-                쿠엔틴을 위시한 개발 리더십과 엘리샤, 아이리스, 라덱, 안티그래비티, 빅터의 초호기 기동 성공을 향한 여정. 
-                시방서의 표준 규칙들이 과연 올바르게 동작할 것인가? 당신의 결정으로 초호기를 완전 구동하세요.
+                태평양 마리아나 해구 아래, 의문의 폭발로 버려진 기지 '아틀라스'에 홀로 생존한 주인공. 
+                산소 잔류량은 단 12%, 다가오는 압쇄와 내폭의 공포 속에서 생존을 위한 마지막 사투를 벌이십시오. 
+                당신의 침묵 속 결정만이 유일한 탈출로를 엽니다.
               </p>
               
               <button className="start-story-btn" onClick={() => { setIsLanding(false); }} style={{ display: 'flex', gap: '8px' }}>
