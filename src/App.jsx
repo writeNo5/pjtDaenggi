@@ -172,9 +172,6 @@ const App = () => {
 
         {/* 인터랙티브 스토리 콘텐츠 프레임 */}
         <main className="content-area" id="scroll-container">
-          {/* 비주얼 일러스트 패널 */}
-          <VisualPanel image={scene.image} title={scene.title} />
-
           {/* 비주얼 가이드 연출 큐 */}
           <div className="visual-cue">
             <div className="cue-dot" />
@@ -201,6 +198,7 @@ const App = () => {
                   <span className="ending-badge-large">{scene.badge}</span>
                   <h2 className="ending-title">{scene.title}</h2>
                 </div>
+                <VisualPanel image={scene.image} title={scene.title} />
 
                 {currentEndingScene && (
                   <div className="ending-scene-block animate-fade-up">
@@ -226,6 +224,7 @@ const App = () => {
             ) : (
               <div className="novel-layout animate-fade-up">
                 <h2 className="novel-scene-title">{scene.title}</h2>
+                <VisualPanel image={scene.image} title={scene.title} />
                 {scene.paragraphs.map((p, idx) => (
                   <p key={idx} className="novel-paragraph">{p}</p>
                 ))}
