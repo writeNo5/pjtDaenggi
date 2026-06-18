@@ -96,18 +96,11 @@ const App = () => {
     } else {
       setCurrentEndingSceneIndex(null);
     }
-
-    // Reset scroll position to top
-    const scrollArea = document.getElementById('scroll-container');
-    if (scrollArea) scrollArea.scrollTop = 0;
   };
 
   const handleNextEndingScene = (scenesLength) => {
     if (currentEndingSceneIndex < scenesLength - 1) {
       setCurrentEndingSceneIndex(prev => prev + 1);
-      // Scroll text content back to top
-      const scrollArea = document.getElementById('scroll-container');
-      if (scrollArea) scrollArea.scrollTop = 0;
     } else {
       // Completed ending, go back to start
       handleReset();
@@ -119,8 +112,6 @@ const App = () => {
     setCurrentSceneId('scene-start');
     setHistory(['scene-start']);
     setCurrentEndingSceneIndex(null);
-    const scrollArea = document.getElementById('scroll-container');
-    if (scrollArea) scrollArea.scrollTop = 0;
   };
 
   const toggleSound = () => {
@@ -137,9 +128,15 @@ const App = () => {
     setCurrentEndingSceneIndex(0);
     setShowArchive(false);
     setHistory(prev => [...prev, endingId]);
-    const scrollArea = document.getElementById('scroll-container');
-    if (scrollArea) scrollArea.scrollTop = 0;
   };
+
+  // 5. Scroll Position Reset Hook (Triggered on state update to guarantee DOM is updated)
+  useEffect(() => {
+    const scrollArea = document.getElementById('scroll-container');
+    if (scrollArea) {
+      scrollArea.scrollTop = 0;
+    }
+  }, [currentSceneId, currentEndingSceneIndex, isLanding]);
 
   // Get current scene/ending data
   const scene = storyData[currentSceneId];
