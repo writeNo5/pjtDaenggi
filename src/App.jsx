@@ -4,6 +4,8 @@ import { storyData } from './data/storyData';
 import VisualPanel from './components/VisualPanel';
 import EndingArchive from './components/EndingArchive';
 import { audioSynth } from './utils/audioSynth';
+import './App.css';
+
 
 const App = () => {
   // 1. State Hooks
