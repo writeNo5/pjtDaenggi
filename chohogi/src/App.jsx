@@ -213,7 +213,7 @@ const App = () => {
                     {currentEndingScene && (
                       <div className="ending-scene-block animate-fade-up">
                         <h3 className="ending-scene-subtitle">{currentEndingScene.subtitle}</h3>
-                        <p className="novel-paragraph">{currentEndingScene.text}</p>
+                        <p className="novel-paragraph" dangerouslySetInnerHTML={{ __html: currentEndingScene.text }} />
                       </div>
                     )}
 
@@ -236,7 +236,7 @@ const App = () => {
                     <h2 className="novel-scene-title">{scene.title}</h2>
                     <VisualPanel image={scene.image} title={scene.title} />
                     {scene.paragraphs.map((p, idx) => (
-                      <p key={idx} className="novel-paragraph">{p}</p>
+                      <p key={idx} className="novel-paragraph" dangerouslySetInnerHTML={{ __html: p }} />
                     ))}
 
                     {/* 선택 분기 단락 */}
