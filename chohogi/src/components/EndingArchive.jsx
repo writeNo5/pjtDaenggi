@@ -3,25 +3,32 @@ import { Lock, Unlock, X, Award } from 'lucide-react';
 
 const ENDING_DETAILS = {
   'ending-a1': {
-    title: "Ending A-1. 초호기 프로젝트 완벽 기동",
-    hint: "시방서 순서대로 빌드 검증을 거친 후 빅터에게 최종 검수를 요청하여 무사히 런칭을 성공시키세요.",
-    badge: "완벽 기동 해피엔딩",
+    title: "Ending A-1. 지상 귀환",
+    hint: "강화 대기압 잠수 슈트를 기동하고 침수 구역을 수중 돌파하여 부력 탈출 포트를 사출하세요.",
+    badge: "완벽 생존 엔딩",
     color: "#059669", // Jade Green
-    thumbnail: "https://placehold.co/80x80/059669/ffffff?text=A-1"
+    thumbnail: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=80&auto=format&fit=crop"
   },
   'ending-b1': {
-    title: "Ending B-1. 대혼란의 버그 폭풍",
-    hint: "시방서 검토나 QA 검수 단계 없이 조급하게 프로덕션 배포를 감행해 보세요.",
-    badge: "시스템 크래시 엔딩",
+    title: "Ending B-1. 기압 괴사",
+    hint: "원격 콘솔을 연결해 무리하게 로봇 팔로 기압 문을 파괴하다 기벽 균열을 발생시키세요.",
+    badge: "내폭 압쇄 엔딩",
     color: "#b22222", // Vivid Red
-    thumbnail: "https://placehold.co/80x80/b22222/ffffff?text=B-1"
+    thumbnail: "https://images.unsplash.com/photo-1551244072-5d12893278ab?q=80&w=80&auto=format&fit=crop"
   },
   'ending-b2': {
-    title: "Ending B-2. 적막속의 침묵 작전",
-    hint: "사운드 연출을 배제하고 라덱의 사운드 합성을 거부하여 조용한 분위기 속에서 이야기를 끝마치세요.",
-    badge: "조용한 침묵 엔딩",
-    color: "#4b5563", // Gray
-    thumbnail: "https://placehold.co/80x80/4b5563/ffffff?text=B-2"
+    title: "Ending B-2. 심해의 요람",
+    hint: "지열 우회 동선 격실로 직접 우회 진입하여 고온 가스를 마시고 발전 기어를 수동 연결하세요.",
+    badge: "희생적 완수 엔딩",
+    color: "#d97706", // Amber
+    thumbnail: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=80&auto=format&fit=crop"
+  },
+  'ending-b3': {
+    title: "Ending B-3. 심해의 괴물",
+    hint: "중앙 인공지능 리바이어던의 안전 프로토콜을 강제 포맷하여 외창 주변 보호막을 해제하세요.",
+    badge: "미스터리 소멸 엔딩",
+    color: "#7c3aed", // Purple
+    thumbnail: "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?q=80&w=80&auto=format&fit=crop"
   }
 };
 
