@@ -9,6 +9,7 @@ import './App.css';
 
 const App = () => {
   // 1. State Hooks
+  const [isLanding, setIsLanding] = useState(true);
   const [currentSceneId, setCurrentSceneId] = useState('scene-start');
   const [history, setHistory] = useState(['scene-start']);
   const [unlockedEndings, setUnlockedEndings] = useState(() => {
@@ -95,6 +96,10 @@ const App = () => {
     } else {
       setCurrentEndingSceneIndex(null);
     }
+
+    // Reset scroll position to top
+    const scrollArea = document.getElementById('scroll-container');
+    if (scrollArea) scrollArea.scrollTop = 0;
   };
 
   const handleNextEndingScene = (scenesLength) => {
@@ -110,6 +115,7 @@ const App = () => {
   };
 
   const handleReset = () => {
+    setIsLanding(true);
     setCurrentSceneId('scene-start');
     setHistory(['scene-start']);
     setCurrentEndingSceneIndex(null);
@@ -126,6 +132,7 @@ const App = () => {
   };
 
   const handleSelectEndingFromArchive = (endingId) => {
+    setIsLanding(false);
     setCurrentSceneId(endingId);
     setCurrentEndingSceneIndex(0);
     setShowArchive(false);
@@ -172,82 +179,104 @@ const App = () => {
 
         {/* 인터랙티브 스토리 콘텐츠 프레임 */}
         <main className="content-area" id="scroll-container">
-          {/* 비주얼 가이드 연출 큐 */}
-          <div className="visual-cue">
-            <div className="cue-dot" />
-            <p>{scene.visualCue}</p>
-          </div>
-
-          {/* 사운드 연출 안내 가이드 */}
-          {soundEnabled && (
-            <div className="sound-indicator">
-              <span className="sound-wave">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-              <span className="sound-text">{scene.sound}</span>
+          {isLanding ? (
+            <div className="landing-layout animate-fade-up">
+              <span className="landing-brand">紅緞 (홍단)</span>
+              <h2 className="landing-title">붉은 댕기 소녀</h2>
+              <p className="landing-subtitle">
+                1930년대 일제강점기 경성,<br />
+                빼앗긴 조국의 독립을 향한 숨막히는 여정
+              </p>
+              
+              <div className="visual-panel-container">
+                <img src="/images/scene1.png" alt="붉은 댕기 소녀" className="storyboard-img zoom-animation" />
+              </div>
+              
+              <p className="landing-description">
+                조선인들의 철저한 통제와 감시 속에, 당신은 어머니의 기밀 지령문을 수락산 골짜기의 할머니에게 배달해야 합니다. 
+                신작로의 순사들과 북한산 안개 속에서 도사리는 잔인한 밀정 시게루……. 
+                당신의 선택이 붉은 댕기 소녀 홍단과 조국 독립군들의 운명을 결정합니다.
+              </p>
+              
+              <button className="start-story-btn" onClick={() => { setIsLanding(false); }} style={{ display: 'flex', gap: '8px' }}>
+                <Play size={18} />
+                <span>이야기 시작하기</span>
+              </button>
             </div>
-          )}
-
-          {/* 스토리 텍스트 렌더러 */}
-          <div className="story-text-container">
-            {isEnding ? (
-              <div className="ending-layout">
-                <div className="ending-intro">
-                  <span className="ending-badge-large">{scene.badge}</span>
-                  <h2 className="ending-title">{scene.title}</h2>
+          ) : (
+            <>
+              {/* 사운드 연출 안내 가이드 */}
+              {soundEnabled && (
+                <div className="sound-indicator">
+                  <span className="sound-wave">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </span>
+                  <span className="sound-text">{scene.sound}</span>
                 </div>
-                <VisualPanel image={scene.image} title={scene.title} />
+              )}
 
-                {currentEndingScene && (
-                  <div className="ending-scene-block animate-fade-up">
-                    <h3 className="ending-scene-subtitle">{currentEndingScene.subtitle}</h3>
-                    <p className="novel-paragraph">{currentEndingScene.text}</p>
+              {/* 스토리 텍스트 렌더러 */}
+              <div className="story-text-container">
+                {isEnding ? (
+                  <div className="ending-layout">
+                    <div className="ending-intro">
+                      <span className="ending-badge-large">{scene.badge}</span>
+                      <h2 className="ending-title">{scene.title}</h2>
+                    </div>
+                    <VisualPanel image={scene.image} title={scene.title} />
+
+                    {currentEndingScene && (
+                      <div className="ending-scene-block animate-fade-up">
+                        <h3 className="ending-scene-subtitle">{currentEndingScene.subtitle}</h3>
+                        <p className="novel-paragraph">{currentEndingScene.text}</p>
+                      </div>
+                    )}
+
+                    <div className="ending-nav">
+                      <button 
+                        className="next-scene-btn" 
+                        onClick={() => handleNextEndingScene(scene.scenes.length)}
+                      >
+                        <span>
+                          {currentEndingSceneIndex === scene.scenes.length - 1 
+                            ? '스토리 완료 (처음으로)' 
+                            : `다음 장면 읽기 (${currentEndingSceneIndex + 1}/${scene.scenes.length})`}
+                        </span>
+                        <ChevronRight size={18} />
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="novel-layout animate-fade-up">
+                    <h2 className="novel-scene-title">{scene.title}</h2>
+                    <VisualPanel image={scene.image} title={scene.title} />
+                    {scene.paragraphs.map((p, idx) => (
+                      <p key={idx} className="novel-paragraph">{p}</p>
+                    ))}
+
+                    {/* 선택 분기 단락 */}
+                    <div className="choices-section">
+                      <span className="section-label">운명의 방향을 선택하세요</span>
+                      <div className="choices-grid">
+                        {scene.choices.map((choice, idx) => (
+                          <button
+                            key={idx}
+                            className="choice-button"
+                            onClick={() => handleChoice(choice.nextScene)}
+                          >
+                            <span className="choice-num-tag">{choice.label}</span>
+                            <p className="choice-text">{choice.text}</p>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 )}
-
-                <div className="ending-nav">
-                  <button 
-                    className="next-scene-btn" 
-                    onClick={() => handleNextEndingScene(scene.scenes.length)}
-                  >
-                    <span>
-                      {currentEndingSceneIndex === scene.scenes.length - 1 
-                        ? '스토리 완료 (처음으로)' 
-                        : `다음 장면 읽기 (${currentEndingSceneIndex + 1}/${scene.scenes.length})`}
-                    </span>
-                    <ChevronRight size={18} />
-                  </button>
-                </div>
               </div>
-            ) : (
-              <div className="novel-layout animate-fade-up">
-                <h2 className="novel-scene-title">{scene.title}</h2>
-                <VisualPanel image={scene.image} title={scene.title} />
-                {scene.paragraphs.map((p, idx) => (
-                  <p key={idx} className="novel-paragraph">{p}</p>
-                ))}
-
-                {/* 선택 분기 단락 */}
-                <div className="choices-section">
-                  <span className="section-label">운명의 방향을 선택하세요</span>
-                  <div className="choices-grid">
-                    {scene.choices.map((choice, idx) => (
-                      <button
-                        key={idx}
-                        className="choice-button"
-                        onClick={() => handleChoice(choice.nextScene)}
-                      >
-                        <span className="choice-num-tag">{choice.label}</span>
-                        <p className="choice-text">{choice.text}</p>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+            </>
+          )}
         </main>
       </div>
 

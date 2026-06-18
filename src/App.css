@@ -23,7 +23,7 @@
 }
 
 body {
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Gowun Dodum', sans-serif;
   background-color: #12100f;
   color: var(--text-color);
   min-height: 100vh;
@@ -180,7 +180,7 @@ body {
 .content-area {
   flex: 1;
   overflow-y: auto;
-  padding: 20px 20px 80px 20px;
+  padding: 20px 20px 150px 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -691,4 +691,75 @@ body {
 .content-area::-webkit-scrollbar-thumb, .archive-list::-webkit-scrollbar-thumb {
   background-color: var(--border-color);
   border-radius: 2px;
+}
+
+/* 시작 페이지 (Landing Cover) 스타일 */
+.landing-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding-top: 10px;
+}
+
+.landing-brand {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--muted-color);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.landing-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--accent-red);
+  letter-spacing: 4px;
+  margin-bottom: 4px;
+}
+
+.landing-subtitle {
+  font-size: 0.85rem;
+  color: var(--muted-color);
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.landing-description {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  word-break: keep-all;
+  padding: 0 10px;
+}
+
+.start-story-btn {
+  width: 100%;
+  background-color: var(--accent-red);
+  color: white;
+  border: none;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 20px rgba(178, 34, 34, 0.2);
+  margin-top: 10px;
+}
+
+.start-story-btn:hover {
+  background-color: #921b1b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(178, 34, 34, 0.3);
+}
+
+.start-story-btn:active {
+  transform: translateY(0);
 }
